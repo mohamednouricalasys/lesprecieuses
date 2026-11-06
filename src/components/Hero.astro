@@ -1,0 +1,158 @@
+---
+import { useTranslations, type Language } from '../i18n';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="hero relative flex items-center overflow-hidden bg-cream">
+  <!-- Background decorations -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 bg-[linear-gradient(rgba(61,43,31,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(61,43,31,0.025)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+
+    <!-- Gradient orbs, anchored to the content width so they frame it on wide screens -->
+    <div class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full max-w-[100rem]">
+      <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-200/40 rounded-full blur-3xl animate-pulse-soft"></div>
+      <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-warm-200/30 rounded-full blur-3xl animate-pulse-soft animate-delay-500"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/40 rounded-full blur-3xl"></div>
+    </div>
+  </div>
+
+  <div class="hero-inner relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="hero-grid grid lg:grid-cols-2 items-center">
+      <!-- Content -->
+      <div class="text-center lg:text-left">
+        <div class="eyebrow mb-6 animate-fade-in">
+          <span>{t.hero.title}</span>
+        </div>
+
+        <h1 class="font-display font-bold mb-8 animate-fade-in-up text-balance">
+          <span class="block text-4xl sm:text-5xl lg:text-[2.6rem] xl:text-[3.4rem] leading-[1.15] lg:whitespace-nowrap text-primary-600">{t.hero.titleLine1}</span>
+          <span class="block mt-3 lg:mt-4 text-3xl sm:text-4xl lg:text-[2.2rem] xl:text-[2.8rem] leading-[1.2] italic text-warm-500">{t.hero.titleLine2}</span>
+        </h1>
+
+        <p class="text-lg text-secondary-800 max-w-xl mx-auto lg:mx-0 mb-10 animate-fade-in-up animate-delay-200 leading-relaxed">
+          {t.hero.description}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up animate-delay-300">
+          <a href="#contact" class="btn-primary group">
+            {t.hero.primaryCta}
+            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+          <a href="#concept" class="btn-secondary">
+            {t.hero.secondaryCta}
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="relative animate-fade-in-up animate-delay-200">
+        <div class="hero-media relative">
+          <!-- Main image container -->
+          <div class="relative rounded-[20px] overflow-hidden shadow-[0_0_10px_rgba(0,0,0,0.35)]">
+            <img
+              src={`${base}/images/hero.png`}
+              alt="Les Precieuses - Corner de vetements eco-responsables"
+              width="1600"
+              height="906"
+              class="w-full aspect-[16/9] object-cover"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary-900/20 to-transparent"></div>
+          </div>
+
+          <!-- Floating cards -->
+          <div class="absolute -bottom-6 -left-6 hidden sm:block">
+            <div class="bg-white rounded-2xl p-4 shadow-xl shadow-secondary-900/10 animate-float">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-accent-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                  </svg>
+                </div>
+                <div>
+                  <span class="block text-sm font-semibold text-secondary-900">{t.misc.ecoResponsible}</span>
+                  <span class="text-xs text-secondary-500">{t.misc.secondHand}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="absolute -top-4 -right-4 hidden sm:block">
+            <div class="bg-white rounded-2xl p-4 shadow-xl shadow-secondary-900/10 animate-float animate-delay-300">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary-100 rounded-xl flex items-center justify-center">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <span class="block text-sm font-semibold text-secondary-900">{t.misc.solidarity}</span>
+                  <span class="text-xs text-secondary-500">{t.misc.rse}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <a href="#concept" class="flex flex-col items-center gap-2 text-secondary-400 hover:text-primary-500 transition-colors">
+      <span class="text-xs font-medium">{t.hero.scrollLabel}</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  /* ---------- Layout ---------- */
+  .hero {
+    /* Fills the viewport, but never stretches into a void on very tall screens */
+    min-height: clamp(36rem, 100vh, 64rem);
+    min-height: clamp(36rem, 100svh, 64rem);
+  }
+
+  .hero-inner {
+    /* Top padding clears the fixed header; both scale with viewport height */
+    padding-top: clamp(7rem, 15vh, 10rem);
+    padding-bottom: clamp(5.5rem, 11vh, 8rem);
+  }
+
+  .hero-grid {
+    row-gap: clamp(3rem, 8vw, 4.5rem);
+    column-gap: clamp(3rem, 5vw, 5.5rem);
+  }
+
+  @media (min-width: 1024px) {
+    /* Size the media from the viewport height too, so on short/wide screens it
+       stays proportional to the 16:9 image instead of pushing the fold. */
+    .hero-media {
+      width: min(100%, max(26rem, calc((100vh - 17rem) * 16 / 9)));
+      width: min(100%, max(26rem, calc((100svh - 17rem) * 16 / 9)));
+      margin-inline: auto 0;
+    }
+  }
+
+  /* Short landscape viewports: hide the scroll hint rather than collide with content */
+  @media (max-height: 700px) and (min-width: 1024px) {
+    .hero-scroll {
+      display: none;
+    }
+  }
+</style>

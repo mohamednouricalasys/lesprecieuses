@@ -1,0 +1,66 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<MainLayout title={`${t.privacy.title} | Les Precieuses`}>
+  <section class="pt-32 pb-20 lg:pt-40 lg:pb-32 bg-cream">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <a href={getLocalizedPath('/', lang)} class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 mb-8 group">
+        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        {t.privacy.back}
+      </a>
+
+      <h1 class="section-title mb-8">{t.privacy.title}</h1>
+
+      <div class="prose prose-lg prose-secondary max-w-none">
+        <h2>Collecte des donnees personnelles</h2>
+        <p>
+          Les donnees personnelles collectees sur ce site sont uniquement destinees a l'association Nous Avons Des Elles. Elles ne seront en aucun cas cedees a des tiers.
+        </p>
+
+        <h2>Finalite des donnees collectees</h2>
+        <p>
+          Les donnees collectees via le formulaire de contact sont utilisees uniquement pour repondre a vos demandes d'information concernant les corners Les Precieuses.
+        </p>
+
+        <h2>Duree de conservation</h2>
+        <p>
+          Les donnees sont conservees pendant la duree necessaire au traitement de votre demande, et au maximum 3 ans apres le dernier contact.
+        </p>
+
+        <h2>Vos droits</h2>
+        <p>
+          Conformement au Reglement General sur la Protection des Donnees (RGPD), vous disposez d'un droit d'acces, de rectification, de suppression et de portabilite de vos donnees personnelles.
+        </p>
+        <p>
+          Pour exercer ces droits, vous pouvez nous contacter a l'adresse suivante : nous.avons.des.elles@gmail.com
+        </p>
+
+        <h2>Cookies</h2>
+        <p>
+          Ce site n'utilise pas de cookies de suivi ou de publicite. Seuls des cookies techniques essentiels au fonctionnement du site peuvent etre utilises.
+        </p>
+
+        <h2>Securite</h2>
+        <p>
+          Nous mettons en oeuvre des mesures techniques et organisationnelles appropriees pour proteger vos donnees personnelles contre tout acces non autorise, modification, divulgation ou destruction.
+        </p>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .prose h2 {
+    @apply font-display font-bold text-2xl text-secondary-800 mt-8 mb-4;
+  }
+  .prose p {
+    @apply text-secondary-600 leading-relaxed mb-4;
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<MainLayout title={`${t.legal.title} | Les Precieuses`}>
+  <section class="pt-32 pb-20 lg:pt-40 lg:pb-32 bg-cream">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <a href={getLocalizedPath('/', lang)} class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 mb-8 group">
+        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        {t.legal.back}
+      </a>
+
+      <h1 class="section-title mb-8">{t.legal.title}</h1>
+
+      <div class="prose prose-lg prose-secondary max-w-none">
+        <h2>Editeur du site</h2>
+        <p>
+          Association Nous Avons Des Elles<br />
+          Email : nous.avons.des.elles@gmail.com<br />
+          Telephone : 06 68 06 58 57
+        </p>
+
+        <h2>Hebergement</h2>
+        <p>
+          Ce site est heberge par Netlify, Inc.<br />
+          2325 3rd Street, Suite 296<br />
+          San Francisco, California 94107<br />
+          United States
+        </p>
+
+        <h2>Propriete intellectuelle</h2>
+        <p>
+          L'ensemble de ce site releve de la legislation francaise et internationale sur le droit d'auteur et la propriete intellectuelle. Tous les droits de reproduction sont reserves, y compris pour les documents telechargeables et les representations iconographiques et photographiques.
+        </p>
+
+        <h2>Responsabilite</h2>
+        <p>
+          Les informations fournies sur ce site le sont a titre informatif. L'association Nous Avons Des Elles ne saurait garantir l'exactitude, la completude, l'actualite des informations diffusees sur le site.
+        </p>
+
+        <h2>Liens hypertextes</h2>
+        <p>
+          Le site peut contenir des liens hypertextes vers d'autres sites. L'association Nous Avons Des Elles n'exerce aucun controle sur ces sites et decline toute responsabilite quant a leur contenu.
+        </p>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .prose h2 {
+    @apply font-display font-bold text-2xl text-secondary-800 mt-8 mb-4;
+  }
+  .prose p {
+    @apply text-secondary-600 leading-relaxed mb-4;
+  }
+</style>

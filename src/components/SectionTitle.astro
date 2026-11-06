@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  align?: 'left' | 'center' | 'right';
+  light?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  align = 'center',
+  light = false
+} = Astro.props;
+
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center mx-auto',
+  right: 'text-right ml-auto'
+};
+
+const colorClasses = light
+  ? 'text-white'
+  : 'text-secondary-800';
+
+const subtitleColorClasses = light
+  ? 'text-white/80'
+  : 'text-secondary-600';
+---
+
+<div class={`max-w-3xl mb-12 lg:mb-16 ${alignClasses[align]} reveal`}>
+  {subtitle && (
+    <span class={`eyebrow mb-4 ${light ? '!text-secondary-50' : ''}`}>
+      {subtitle}
+    </span>
+  )}
+  <h2 class={`section-title ${colorClasses} mb-4`}>
+    {title}
+  </h2>
+  {description && (
+    <p class={`section-subtitle ${subtitleColorClasses} ${align === 'center' ? 'mx-auto' : ''}`}>
+      {description}
+    </p>
+  )}
+</div>

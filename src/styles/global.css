@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply font-sans text-secondary-800 bg-cream antialiased;
+    font-size: 17px;
+    /* Slide-in reveals and decorative shapes must never create horizontal scroll */
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    @apply bg-warm-200 text-secondary-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary-600 rounded-full transition-all duration-300 hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-600/30 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-primary-700 bg-transparent border-2 border-primary-600 rounded-full transition-all duration-300 hover:bg-primary-50 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-accent-600 rounded-full transition-all duration-300 hover:bg-accent-700 hover:shadow-lg hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-[3.25rem] font-display font-bold text-secondary-800 leading-snug;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl text-secondary-600 max-w-2xl leading-relaxed;
+  }
+
+  .card {
+    @apply bg-white rounded-[20px] shadow-[0_0_10px_rgba(0,0,0,0.12)] overflow-hidden transition-all duration-300 hover:shadow-[0_6px_24px_rgba(61,43,31,0.18)] hover:-translate-y-1;
+  }
+
+  .card-hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-warm-500 bg-clip-text text-transparent;
+  }
+
+  .gradient-bg {
+    @apply bg-cream;
+  }
+
+  /* Sur-titre facon nousavonsdeselles.fr : << - * ASSOCIATION ENGAGEE >> */
+  .eyebrow {
+    @apply inline-flex items-center gap-1.5 text-sm font-normal uppercase tracking-wide text-warm-500;
+  }
+
+  .eyebrow::before {
+    content: '- *';
+  }
+
+  .glass {
+    @apply bg-cream/85 backdrop-blur-lg;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+  .animate-delay-600 { animation-delay: 600ms; }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Intersection Observer animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-scale.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children animations
+   Uses an animation on the `translate` property so it never overrides
+   the cards' own hover `transform` / transition timings. */
+.stagger-children > * {
+  opacity: 0;
+}
+
+.stagger-children.active > * {
+  animation: stagger-in 0.5s ease-out both;
+}
+
+.stagger-children.active > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-children.active > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-children.active > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-children.active > *:nth-child(5) { animation-delay: 400ms; }
+.stagger-children.active > *:nth-child(6) { animation-delay: 500ms; }
+
+@keyframes stagger-in {
+  from { opacity: 0; translate: 0 20px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-secondary-400;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .stagger-children > * {
+    opacity: 1;
+    transform: none;
+  }
+}

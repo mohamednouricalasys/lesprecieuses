@@ -1,0 +1,21 @@
+{
+  "name": "Les Precieuses",
+  "short_name": "Precieuses",
+  "description": "La boutique du reemploi eco-responsable au coeur de votre demarche RSE",
+  "start_url": "/les-precieuses/",
+  "display": "standalone",
+  "background_color": "#fbf4eb",
+  "theme_color": "#8eaf90",
+  "icons": [
+    {
+      "src": "/les-precieuses/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/les-precieuses/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

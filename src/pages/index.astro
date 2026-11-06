@@ -1,0 +1,278 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import ImpactCard from '../components/ImpactCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import StatCard from '../components/StatCard.astro';
+import BenefitCard from '../components/BenefitCard.astro';
+import ContactSection from '../components/ContactSection.astro';
+import { getLangFromUrl, useTranslations } from '../i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Icons for impact cards
+const impactIcons = [
+  `<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`,
+  `<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>`,
+  `<svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>`,
+];
+
+const impactColors = ['primary', 'accent', 'warm'] as const;
+
+// Icons for benefits
+const benefitIcons = [
+  `<svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>`,
+  `<svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`,
+  `<svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>`,
+  `<svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>`,
+];
+
+// Process images
+const processImages = [
+  `${base}/images/collecte.png`,
+  `${base}/images/selection.png`,
+  `${base}/images/achat.png`,
+];
+---
+
+<MainLayout title="Les Precieuses | Nous Avons Des Elles">
+  <!-- Hero Section -->
+  <Hero lang={lang} />
+
+  <!-- Presentation Section -->
+  <section id="concept" class="py-20 lg:py-32 bg-white overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="reveal-left">
+          <span class="eyebrow mb-4">
+            {t.presentation.subtitle}
+          </span>
+          <h2 class="section-title text-secondary-800 mb-6">
+            {t.presentation.title}
+          </h2>
+          <div class="space-y-4 text-secondary-600 leading-relaxed">
+            <p set:html={t.presentation.p1} />
+            <p>{t.presentation.p2}</p>
+            <p>{t.presentation.p3}</p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#impact" class="btn-primary">
+              {t.presentation.cta}
+            </a>
+            <a href="https://www.nousavonsdeselles.fr" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+              {t.presentation.association}
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="relative isolate">
+            <div class="aspect-[4/3] rounded-[20px] overflow-hidden shadow-[0_0_10px_rgba(0,0,0,0.35)]">
+              <img
+                src={`${base}/images/femmes.png`}
+                alt="Equipe Les Precieuses"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-primary-200 rounded-2xl -z-10"></div>
+            <div class="absolute -top-4 -right-4 w-16 h-16 bg-warm-200 rounded-xl -z-10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section id="impact" class="py-20 lg:py-32 gradient-bg">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionTitle
+        subtitle={t.impact.subtitle}
+        title={t.impact.title}
+        description={t.impact.description}
+      />
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8 stagger-children">
+        {t.impact.items.map((item, index) => (
+          <ImpactCard
+            title={item.title}
+            description={item.description}
+            icon={impactIcons[index]}
+            color={impactColors[index]}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 lg:py-32 bg-secondary-800 text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionTitle
+        subtitle={t.stats.subtitle}
+        title={t.stats.title}
+        light={true}
+      />
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16 reveal">
+        {t.stats.items.map((stat, index) => (
+          <div class="text-center p-8 bg-white/5 rounded-[20px] backdrop-blur-sm">
+            <div class="mb-4">
+              <span class={`font-display font-bold text-6xl lg:text-7xl ${index === 0 ? 'text-accent-400' : 'text-primary-400'}`}>
+                {stat.value}
+              </span>
+              <span class={`font-display font-bold text-2xl lg:text-3xl ${index === 0 ? 'text-accent-400' : 'text-primary-400'} ml-2`}>
+                {stat.unit}
+              </span>
+            </div>
+            <p class="text-secondary-200 text-lg leading-relaxed max-w-xs mx-auto">
+              {stat.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="py-20 lg:py-32 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionTitle
+        subtitle={t.process.subtitle}
+        title={t.process.title}
+        description={t.process.description}
+      />
+      <div class="grid md:grid-cols-3 gap-8 lg:gap-12 stagger-children">
+        {t.process.steps.map((step, index) => (
+          <ProcessStep
+            number={index + 1}
+            title={step.title}
+            description={step.description}
+            image={processImages[index]}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="py-20 lg:py-32 bg-secondary-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionTitle
+        subtitle={t.benefits.subtitle}
+        title={t.benefits.title}
+      />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+        {t.benefits.items.map((benefit, index) => (
+          <BenefitCard
+            title={benefit.title}
+            description={benefit.description}
+            icon={benefitIcons[index]}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Ecological Section -->
+  <section class="py-20 lg:py-32 bg-primary-500 text-white overflow-hidden relative">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="reveal-left">
+          <span class="eyebrow !text-secondary-50 mb-4">
+            Mode Durable
+          </span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold leading-tight mb-6 text-secondary-50">
+            La mode responsable au quotidien
+          </h2>
+          <div class="space-y-4 text-white leading-relaxed">
+            <p>
+              Avec Les Precieuses, offrez a vos collaborateurs la possibilite de consommer autrement. Un corner de vetements de seconde main, directement dans vos locaux.
+            </p>
+            <p>
+              Chaque piece achetee prolonge la vie d'un vetement et finance des actions solidaires pour les femmes en situation de precarite.
+            </p>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-4">
+              <div class="aspect-square rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center p-6">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+              </div>
+              <div class="aspect-[4/3] rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center p-6">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="space-y-4 pt-8">
+              <div class="aspect-[4/3] rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center p-6">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <div class="aspect-square rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center p-6">
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 lg:py-32 bg-secondary-800 overflow-hidden relative">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-6 text-balance">
+        {t.cta.title}
+      </h2>
+      <p class="text-xl text-secondary-200 mb-10 max-w-2xl mx-auto">
+        {t.cta.description}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-primary-500 rounded-full transition-all duration-300 hover:bg-primary-600 hover:shadow-xl hover:-translate-y-1">
+          {t.cta.primary}
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+        <a href="https://www.nousavonsdeselles.fr" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white border-2 border-white/30 rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white">
+          {t.cta.secondary}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 lg:py-32 bg-secondary-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionTitle
+        subtitle={t.contact.subtitle}
+        title={t.contact.title}
+        description={t.contact.info.description}
+      />
+      <ContactSection
+        email="nous.avons.des.elles@gmail.com"
+        phone="06 68 06 58 57"
+        lang={lang}
+      />
+    </div>
+  </section>
+</MainLayout>

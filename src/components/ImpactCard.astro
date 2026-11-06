@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  color?: 'primary' | 'accent' | 'warm' | 'secondary';
+}
+
+const { title, description, icon, color = 'primary' } = Astro.props;
+
+const colorClasses = {
+  primary: {
+    bg: 'bg-primary-100',
+    border: 'border-primary-200',
+    iconBg: 'bg-primary-500',
+    text: 'text-primary-700',
+  },
+  accent: {
+    bg: 'bg-accent-50',
+    border: 'border-accent-200',
+    iconBg: 'bg-accent-500',
+    text: 'text-accent-700',
+  },
+  warm: {
+    bg: 'bg-warm-50',
+    border: 'border-warm-200',
+    iconBg: 'bg-warm-500',
+    text: 'text-warm-700',
+  },
+  secondary: {
+    bg: 'bg-secondary-100',
+    border: 'border-secondary-200',
+    iconBg: 'bg-secondary-600',
+    text: 'text-secondary-700',
+  },
+};
+
+const classes = colorClasses[color];
+---
+
+<div class={`rounded-[20px] ${classes.bg} border ${classes.border} p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}>
+  <div class={`w-14 h-14 ${classes.iconBg} rounded-xl flex items-center justify-center mb-6`}>
+    <Fragment set:html={icon} />
+  </div>
+  <h3 class={`font-display font-bold text-xl ${classes.text} mb-3`}>
+    {title}
+  </h3>
+  <p class="text-secondary-600 leading-relaxed">
+    {description}
+  </p>
+</div>
