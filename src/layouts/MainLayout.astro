@@ -8,20 +8,26 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  keywords?: string;
+  noindex?: boolean;
 }
 
 const lang = getLangFromUrl(Astro.url);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const defaultDescription = "Les Precieuses, la boutique du reemploi eco-responsable au coeur de votre demarche RSE. Portee par l'association Nous Avons Des Elles.";
+const defaultDescription = "Les Precieuses - La boutique du reemploi eco-responsable au coeur de votre demarche RSE. Installez un corner de vetements de seconde main dans votre entreprise.";
+const defaultKeywords = "reemploi, seconde main, vetements, eco-responsable, RSE, entreprise, corner, solidaire, economie circulaire, mode durable, Nous Avons Des Elles";
 
 const {
   title,
   description = defaultDescription,
-  ogImage = `${base}/images/og-image.webp`
+  ogImage = `${base}/images/og-image.webp`,
+  keywords = defaultKeywords,
+  noindex = false
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -29,20 +35,36 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="Nous Avons Des Elles" />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+    <meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="FR" />
+    <meta name="geo.placename" content="France" />
+
+    <!-- Language -->
+    <meta http-equiv="content-language" content={lang} />
 
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'self';" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Les Precieuses - Boutique de reemploi eco-responsable" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Les Precieuses | Nous Avons Des Elles" />
 
@@ -50,7 +72,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="Les Precieuses - Boutique de reemploi eco-responsable" />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
@@ -62,26 +85,82 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
     <link rel="manifest" href={`${base}/site.webmanifest`} />
     <meta name="theme-color" content="#8eaf90" />
+    <meta name="msapplication-TileColor" content="#8eaf90" />
 
     <!-- Preconnect to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <title>{title}</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href={`${base}/images/hero.webp`} as="image" type="image/webp" />
+    <link rel="preload" href={`${base}/images/logo/logo-les-precieuses.webp`} as="image" type="image/webp" />
 
-    <!-- Schema.org structured data -->
+    <!-- Schema.org structured data - Organization -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Les Precieuses",
+      "alternateName": "Les Precieuses par Nous Avons Des Elles",
       "description": description,
       "url": canonicalURL,
-      "logo": new URL(`${base}/images/logo/logo-les-precieuses.png`, Astro.site),
+      "logo": new URL(`${base}/images/logo/logo-les-precieuses.webp`, Astro.site),
+      "image": ogImageURL,
       "inLanguage": lang,
+      "sameAs": [
+        "https://www.linkedin.com/company/nous-avons-des-elles",
+        "https://www.facebook.com/nousavonsdeselles",
+        "https://www.instagram.com/nousavonsdeselles"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+33668065857",
+        "email": "nous.avons.des.elles@gmail.com",
+        "contactType": "customer service",
+        "availableLanguage": "French"
+      },
       "parentOrganization": {
         "@type": "Organization",
         "name": "Nous Avons Des Elles",
         "url": "https://www.nousavonsdeselles.fr"
+      }
+    })} />
+
+    <!-- Schema.org structured data - Service -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Corner Les Precieuses",
+      "description": "Installation de corners de vetements de seconde main eco-responsables en entreprise",
+      "provider": {
+        "@type": "Organization",
+        "name": "Les Precieuses"
+      },
+      "serviceType": "Corner de reemploi en entreprise",
+      "areaServed": {
+        "@type": "Country",
+        "name": "France"
+      },
+      "offers": {
+        "@type": "Offer",
+        "description": "Installation et gestion de corners de vetements de seconde main",
+        "eligibleRegion": {
+          "@type": "Country",
+          "name": "France"
+        }
+      }
+    })} />
+
+    <!-- Schema.org structured data - WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Les Precieuses",
+      "url": Astro.site,
+      "description": description,
+      "inLanguage": "fr-FR",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Nous Avons Des Elles"
       }
     })} />
   </head>
