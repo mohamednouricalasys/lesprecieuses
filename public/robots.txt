@@ -2,9 +2,9 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://lesprecieuses.vercel.app/sitemap.xml
+Sitemap: https://nousavonsdeselles.fr/les-precieuses/sitemap.xml
 
-# Crawl-delay (optionnel, pour menager les serveurs)
+# Crawl-delay
 Crawl-delay: 1
 
 # Fichiers a ne pas indexer

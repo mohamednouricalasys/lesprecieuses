@@ -64,13 +64,13 @@
     @apply bg-cream;
   }
 
-  /* Sur-titre facon nousavonsdeselles.fr : << - * ASSOCIATION ENGAGEE >> */
+  /* Sur-titre facon nousavonsdeselles.fr : << – • ASSOCIATION ENGAGEE >> */
   .eyebrow {
     @apply inline-flex items-center gap-1.5 text-sm font-normal uppercase tracking-wide text-warm-500;
   }
 
   .eyebrow::before {
-    content: '- *';
+    content: '– •';
   }
 
   .glass {
