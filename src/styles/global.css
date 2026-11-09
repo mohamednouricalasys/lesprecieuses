@@ -10,16 +10,43 @@
     scroll-padding-top: 6rem;
   }
 
+  /* ---------- Echelle typographique fluide ----------
+     Mobile (~360px) -> desktop (~1280px). Les titres restent en Playfair Display
+     (identite Nous Avons Des Elles), le texte courant en Lato. */
+  :root {
+    --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+    --fs-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    --fs-h1: clamp(2.125rem, 1.45rem + 2.9vw, 3.5rem);
+    --fs-h1-sub: clamp(1.625rem, 1.15rem + 2vw, 2.625rem);
+    --fs-h2: clamp(1.75rem, 1.3rem + 1.9vw, 2.75rem);
+    --fs-h3: clamp(1.1875rem, 1.12rem + 0.3vw, 1.375rem);
+    --lh-tight: 1.15;
+    --lh-heading: 1.2;
+    --lh-body: 1.7;
+  }
+
   body {
     @apply font-sans text-secondary-800 bg-cream antialiased;
-    font-size: 17px;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
     /* Slide-in reveals and decorative shapes must never create horizontal scroll */
     overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-bold;
-    letter-spacing: -0.01em;
+    /* Playfair est deja serre : un tracking negatif "ecrase" les lettres en gras */
+    letter-spacing: 0;
+    line-height: var(--lh-heading);
+    /* Lignes equilibrees, pas de mot orphelin sur la derniere ligne */
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    hyphens: manual;
+  }
+
+  p, li {
+    /* Evite les mots isoles en fin de paragraphe */
+    text-wrap: pretty;
   }
 
   ::selection {
@@ -40,12 +67,41 @@
     @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-accent-600 rounded-full transition-all duration-300 hover:bg-accent-700 hover:shadow-lg hover:shadow-accent-600/30 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
   }
 
+  /* Titre de section : graisse 600 (le 700 de Playfair empate les grands corps),
+     taille fluide et largeur de ligne limitee pour des coupures harmonieuses. */
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-[3.25rem] font-display font-bold text-secondary-800 leading-snug;
+    @apply font-display text-secondary-800;
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    line-height: var(--lh-heading);
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+
+  .text-center > .section-title,
+  .section-title.text-center {
+    margin-inline: auto;
   }
 
   .section-subtitle {
-    @apply text-lg md:text-xl text-secondary-600 max-w-2xl leading-relaxed;
+    @apply text-secondary-600 max-w-2xl;
+    font-size: var(--fs-lead);
+    line-height: 1.65;
+  }
+
+  /* Corps de texte des sections editoriales : largeur de lecture confortable */
+  .prose-block {
+    max-width: 62ch;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  .prose-block > * + * {
+    margin-top: 1.1em;
+  }
+
+  .prose-block strong {
+    @apply font-bold text-secondary-800;
   }
 
   .card {
@@ -66,7 +122,8 @@
 
   /* Sur-titre facon nousavonsdeselles.fr : << – • ASSOCIATION ENGAGEE >> */
   .eyebrow {
-    @apply inline-flex items-center gap-1.5 text-sm font-normal uppercase tracking-wide text-warm-500;
+    @apply inline-flex items-center gap-1.5 text-sm font-normal uppercase text-warm-500;
+    letter-spacing: 0.08em;
   }
 
   .eyebrow::before {

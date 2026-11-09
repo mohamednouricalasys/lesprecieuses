@@ -32,12 +32,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <span>{t.hero.title}</span>
         </div>
 
-        <h1 class="font-display font-bold mb-8 animate-fade-in-up text-balance">
-          <span class="block text-4xl sm:text-5xl lg:text-[2.6rem] xl:text-[3.4rem] leading-[1.15] lg:whitespace-nowrap text-primary-600">{t.hero.titleLine1}</span>
-          <span class="block mt-3 lg:mt-4 text-3xl sm:text-4xl lg:text-[2.2rem] xl:text-[2.8rem] leading-[1.2] italic text-warm-500">{t.hero.titleLine2}</span>
+        <h1 class="hero-title font-display font-bold animate-fade-in-up">
+          <span class="hero-title-main block text-primary-600">{t.hero.titleLine1}</span>
+          <span class="hero-title-sub block italic text-warm-500">{t.hero.titleLine2}</span>
         </h1>
 
-        <p class="text-lg text-secondary-800 max-w-xl mx-auto lg:mx-0 mb-10 animate-fade-in-up animate-delay-200 leading-relaxed">
+        <p class="hero-lead text-secondary-800 max-w-xl mx-auto lg:mx-0 mb-10 animate-fade-in-up animate-delay-200">
           {t.hero.description}
         </p>
 
@@ -147,6 +147,40 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       width: min(100%, max(26rem, calc((100vh - 17rem) * 16 / 9)));
       width: min(100%, max(26rem, calc((100svh - 17rem) * 16 / 9)));
       margin-inline: auto 0;
+    }
+  }
+
+  /* ---------- Typographie ---------- */
+  .hero-title {
+    margin-bottom: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+    text-wrap: balance;
+  }
+
+  .hero-title-main {
+    font-size: var(--fs-h1);
+    line-height: var(--lh-tight);
+  }
+
+  .hero-title-sub {
+    font-size: var(--fs-h1-sub);
+    line-height: var(--lh-heading);
+    margin-top: 0.35em;
+  }
+
+  .hero-lead {
+    font-size: var(--fs-lead);
+    line-height: 1.65;
+  }
+
+  @media (min-width: 1024px) {
+    /* En deux colonnes, le titre suit la largeur de sa colonne (~43vw)
+       plutot que celle de l'ecran : pas de debordement ni de coupure brutale. */
+    .hero-title-main {
+      font-size: clamp(2.5rem, 4.1vw, 3.375rem);
+    }
+
+    .hero-title-sub {
+      font-size: clamp(2.125rem, 3.4vw, 2.75rem);
     }
   }
 
