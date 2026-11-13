@@ -1,0 +1,337 @@
+{
+  "page": {
+    "hero": {
+      "alt": "Portant de vêtements de seconde main colorés dans un corner Les Précieuses",
+      "src": "boutique-portant-seconde-main-1600.webp",
+      "srcset": [
+        "boutique-portant-seconde-main-800.webp 800w",
+        "boutique-portant-seconde-main-1600.webp 1600w"
+      ],
+      "width": 1600,
+      "height": 900
+    },
+    "concept": {
+      "alt": "Deux femmes échangent sur les marches de la boutique solidaire Les Précieuses, entre portants et sacs",
+      "src": "echange-boutique-solidaire-1200.webp",
+      "srcset": [
+        "echange-boutique-solidaire-600.webp 600w",
+        "echange-boutique-solidaire-1200.webp 1200w"
+      ],
+      "width": 1200,
+      "height": 900
+    },
+    "collecte": {
+      "alt": "Panier de collecte « Merci pour les vêtements » sous un portant installé en entreprise",
+      "src": "collecte-panier-vetements-entreprise-800.webp",
+      "srcset": [
+        "collecte-panier-vetements-entreprise-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 600
+    },
+    "selection": {
+      "alt": "Pièces de seconde main sélectionnées et étiquetées sur cintres en bois",
+      "src": "selection-pieces-seconde-main-800.webp",
+      "srcset": [
+        "selection-pieces-seconde-main-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 600
+    },
+    "achat": {
+      "alt": "Une collaboratrice décroche un pull jaune moutarde du portant",
+      "src": "achat-pull-jaune-seconde-main-800.webp",
+      "srcset": [
+        "achat-pull-jaune-seconde-main-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 600
+    },
+    "boutique": {
+      "alt": "Corner Les Précieuses : portant de vêtements, malle en osier, lampe et accessoires",
+      "src": "corner-boutique-seconde-main-1080.webp",
+      "srcset": [
+        "corner-boutique-seconde-main-640.webp 640w",
+        "corner-boutique-seconde-main-1080.webp 1080w"
+      ],
+      "width": 1080,
+      "height": 1440
+    },
+    "bijoux": {
+      "alt": "Cliente souriante essayant des boucles d’oreilles dorées chez Les Précieuses",
+      "src": "cliente-essai-boucles-oreilles-736.webp",
+      "srcset": [
+        "cliente-essai-boucles-oreilles-640.webp 640w",
+        "cliente-essai-boucles-oreilles-736.webp 736w"
+      ],
+      "width": 736,
+      "height": 1308
+    },
+    "espace": {
+      "alt": "Exemple d’aménagement d’un petit espace : portant, étagères à chapeaux et plante",
+      "src": "petit-espace-corner-precieuses-1024.webp",
+      "srcset": [
+        "petit-espace-corner-precieuses-640.webp 640w",
+        "petit-espace-corner-precieuses-1024.webp 1024w"
+      ],
+      "width": 1024,
+      "height": 1536
+    }
+  },
+  "hero": [
+    {
+      "alt": "Une cliente souriante essaie des boucles d’oreilles dorées",
+      "src": "hero/cliente-boucles-oreilles-800.webp",
+      "srcset": [
+        "hero/cliente-boucles-oreilles-480.webp 480w",
+        "hero/cliente-boucles-oreilles-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Le plaisir de chiner"
+    },
+    {
+      "alt": "Pièces de seconde main sélectionnées et étiquetées sur cintres en bois",
+      "src": "hero/selection-pieces-800.webp",
+      "srcset": [
+        "hero/selection-pieces-480.webp 480w",
+        "hero/selection-pieces-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Chaque pièce a une histoire"
+    },
+    {
+      "alt": "Manteau et robe rouges de seconde main sur le portant",
+      "src": "hero/manteau-rouge-800.webp",
+      "srcset": [
+        "hero/manteau-rouge-480.webp 480w",
+        "hero/manteau-rouge-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Rouge passion"
+    },
+    {
+      "alt": "Deux femmes échangent devant la boutique solidaire et ses portants",
+      "src": "hero/echange-boutique-800.webp",
+      "srcset": [
+        "hero/echange-boutique-480.webp 480w",
+        "hero/echange-boutique-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Échange & partage"
+    },
+    {
+      "alt": "Une collaboratrice décroche un pull jaune moutarde du portant",
+      "src": "hero/achat-pull-jaune-800.webp",
+      "srcset": [
+        "hero/achat-pull-jaune-480.webp 480w",
+        "hero/achat-pull-jaune-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Coup de cœur"
+    }
+  ],
+  "gallery": [
+    {
+      "alt": "Coffret de boucles d’oreilles vintage sélectionnées par Les Précieuses",
+      "src": "galerie/coffret-boucles-oreilles-vintage-800.webp",
+      "srcset": [
+        "galerie/coffret-boucles-oreilles-vintage-480.webp 480w",
+        "galerie/coffret-boucles-oreilles-vintage-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Bijoux chinés"
+    },
+    {
+      "alt": "Manteau et robe rouges de seconde main sur le portant",
+      "src": "galerie/manteau-rouge-portant-800.webp",
+      "srcset": [
+        "galerie/manteau-rouge-portant-480.webp 480w",
+        "galerie/manteau-rouge-portant-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Rouge passion"
+    },
+    {
+      "alt": "Étagère d’objets chinés : portrait peint, vase et carnets",
+      "src": "galerie/etagere-objets-chines-portrait-800.webp",
+      "srcset": [
+        "galerie/etagere-objets-chines-portrait-480.webp 480w",
+        "galerie/etagere-objets-chines-portrait-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Objets chinés"
+    },
+    {
+      "alt": "Bracelets et bijoux fantaisie de seconde main",
+      "src": "galerie/bracelets-bijoux-fantaisie-800.webp",
+      "srcset": [
+        "galerie/bracelets-bijoux-fantaisie-480.webp 480w",
+        "galerie/bracelets-bijoux-fantaisie-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Bracelets vintage"
+    },
+    {
+      "alt": "Présentation de bijoux dans une vitrine lumineuse",
+      "src": "galerie/vitrine-bijoux-lumineuse-800.webp",
+      "srcset": [
+        "galerie/vitrine-bijoux-lumineuse-480.webp 480w",
+        "galerie/vitrine-bijoux-lumineuse-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Vitrine lumineuse"
+    },
+    {
+      "alt": "Objets de décoration en céramique rouge chinés",
+      "src": "galerie/ceramique-rouge-chinee-800.webp",
+      "srcset": [
+        "galerie/ceramique-rouge-chinee-480.webp 480w",
+        "galerie/ceramique-rouge-chinee-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Touche de couleur"
+    },
+    {
+      "alt": "Plateau de broches et boucles d’oreilles dorées",
+      "src": "galerie/plateau-broches-dorees-800.webp",
+      "srcset": [
+        "galerie/plateau-broches-dorees-480.webp 480w",
+        "galerie/plateau-broches-dorees-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Broches dorées"
+    },
+    {
+      "alt": "Céramiques blanches vintage : coupe, bonbonnière et mains décoratives",
+      "src": "galerie/ceramiques-blanches-vintage-800.webp",
+      "srcset": [
+        "galerie/ceramiques-blanches-vintage-480.webp 480w",
+        "galerie/ceramiques-blanches-vintage-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Douceur vintage"
+    },
+    {
+      "alt": "Paire de lampes design et pochette posées sur un plateau",
+      "src": "galerie/lampes-design-deco-800.webp",
+      "srcset": [
+        "galerie/lampes-design-deco-480.webp 480w",
+        "galerie/lampes-design-deco-800.webp 800w"
+      ],
+      "width": 800,
+      "height": 1000,
+      "tag": "Esprit déco"
+    }
+  ],
+  "marquee": [
+    {
+      "alt": "Coffret de boucles d’oreilles vintage sélectionnées par Les Précieuses",
+      "src": "bandeau/coffret-boucles-oreilles-vintage-h240.webp",
+      "src2x": "bandeau/coffret-boucles-oreilles-vintage-h480.webp",
+      "width": 320,
+      "height": 240,
+      "width2x": 640
+    },
+    {
+      "alt": "Une collaboratrice décroche un pull jaune moutarde du portant",
+      "src": "bandeau/achat-pull-jaune-seconde-main-h240.webp",
+      "src2x": "bandeau/achat-pull-jaune-seconde-main-h480.webp",
+      "width": 135,
+      "height": 240,
+      "width2x": 270
+    },
+    {
+      "alt": "Étagère d’objets chinés : portrait peint, vase et carnets",
+      "src": "bandeau/etagere-objets-chines-portrait-h240.webp",
+      "src2x": "bandeau/etagere-objets-chines-portrait-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Panier de collecte « Merci pour les vêtements » sous un portant installé en entreprise",
+      "src": "bandeau/collecte-panier-vetements-entreprise-h240.webp",
+      "src2x": "bandeau/collecte-panier-vetements-entreprise-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Bracelets et bijoux fantaisie de seconde main",
+      "src": "bandeau/bracelets-bijoux-fantaisie-h240.webp",
+      "src2x": "bandeau/bracelets-bijoux-fantaisie-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Pièces de seconde main sélectionnées et étiquetées sur cintres en bois",
+      "src": "bandeau/selection-pieces-seconde-main-h240.webp",
+      "src2x": "bandeau/selection-pieces-seconde-main-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Objets de décoration en céramique rouge chinés",
+      "src": "bandeau/ceramique-rouge-chinee-h240.webp",
+      "src2x": "bandeau/ceramique-rouge-chinee-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Plateau de broches et boucles d’oreilles dorées",
+      "src": "bandeau/plateau-broches-dorees-h240.webp",
+      "src2x": "bandeau/plateau-broches-dorees-h480.webp",
+      "width": 320,
+      "height": 240,
+      "width2x": 640
+    },
+    {
+      "alt": "Manteau et robe rouges de seconde main sur le portant",
+      "src": "bandeau/manteau-rouge-portant-h240.webp",
+      "src2x": "bandeau/manteau-rouge-portant-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Céramiques blanches vintage : coupe, bonbonnière et mains décoratives",
+      "src": "bandeau/ceramiques-blanches-vintage-h240.webp",
+      "src2x": "bandeau/ceramiques-blanches-vintage-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Paire de lampes design et pochette posées sur un plateau",
+      "src": "bandeau/lampes-design-deco-h240.webp",
+      "src2x": "bandeau/lampes-design-deco-h480.webp",
+      "width": 180,
+      "height": 240,
+      "width2x": 360
+    },
+    {
+      "alt": "Présentation de bijoux dans une vitrine lumineuse",
+      "src": "bandeau/vitrine-bijoux-lumineuse-h240.webp",
+      "src2x": "bandeau/vitrine-bijoux-lumineuse-h480.webp",
+      "width": 135,
+      "height": 240,
+      "width2x": 270
+    }
+  ]
+}

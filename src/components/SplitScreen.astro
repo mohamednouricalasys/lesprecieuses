@@ -1,0 +1,81 @@
+---
+/**
+ * Split screen : photographie d'un cote, argumentaire de l'autre.
+ * Mobile : image au-dessus du texte. Desktop : image a gauche, ou a droite avec `reverse`.
+ * Le texte passe par le slot par defaut, les boutons par le slot "actions".
+ */
+interface SplitImage {
+  src: string;
+  srcset: string[];
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  id: string;
+  image: SplitImage;
+  eyebrow?: string;
+  title: string;
+  reverse?: boolean;
+  /** Classes de fond de la section (ex. "bg-white", "gradient-bg") */
+  background?: string;
+  /** Cadrage de la photo dans son conteneur 4:5 */
+  objectPosition?: string;
+}
+
+const {
+  id,
+  image,
+  eyebrow,
+  title,
+  reverse = false,
+  background = 'bg-white',
+  objectPosition = 'center',
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (file: string) => `${base}/images/${file}`;
+const srcset = image.srcset.map((entry) => `${base}/images/${entry}`).join(', ');
+const titleId = `${id}-title`;
+---
+
+<section id={id} class:list={['split py-20 lg:py-32 overflow-hidden', background]} aria-labelledby={titleId}>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <figure class:list={[reverse ? 'reveal-right lg:order-2' : 'reveal-left']}>
+        <div class="relative isolate mx-auto w-full max-w-[30rem]">
+          <div class="aspect-[4/5] rounded-[20px] overflow-hidden shadow-[0_0_10px_rgba(0,0,0,0.35)]">
+            <img
+              src={url(image.src)}
+              srcset={srcset}
+              sizes="(min-width: 480px) 480px, calc(100vw - 2rem)"
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              class="w-full h-full object-cover"
+              style={`object-position: ${objectPosition}`}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class:list={['absolute -bottom-4 w-24 h-24 bg-primary-200 rounded-2xl -z-10', reverse ? '-right-4' : '-left-4']} aria-hidden="true"></div>
+          <div class:list={['absolute -top-4 w-16 h-16 bg-warm-200 rounded-xl -z-10', reverse ? '-left-4' : '-right-4']} aria-hidden="true"></div>
+        </div>
+      </figure>
+
+      <div class:list={[reverse ? 'reveal-left lg:order-1' : 'reveal-right']}>
+        {eyebrow && <span class="eyebrow mb-4">{eyebrow}</span>}
+        <h2 id={titleId} class="section-title text-secondary-800 mb-6">{title}</h2>
+        <div class="prose-block text-secondary-600">
+          <slot />
+        </div>
+        {Astro.slots.has('actions') && (
+          <div class="mt-8 flex flex-wrap gap-4">
+            <slot name="actions" />
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

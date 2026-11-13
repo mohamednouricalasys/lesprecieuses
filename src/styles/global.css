@@ -23,6 +23,12 @@
     --lh-tight: 1.15;
     --lh-heading: 1.2;
     --lh-body: 1.7;
+
+    /* Bandeau galerie : hauteur des vignettes + marges. Le Hero s'en sert pour
+       laisser le bandeau visible dans la premiere vue (desktop / tablette). */
+    --marquee-h: clamp(8rem, 5.5rem + 7vh, 13rem);
+    --marquee-pad: clamp(0.75rem, 1.5vh, 1.25rem);
+    --marquee-block: calc(var(--marquee-h) + 2 * var(--marquee-pad));
   }
 
   body {

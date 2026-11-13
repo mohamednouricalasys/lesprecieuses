@@ -17,6 +17,57 @@ export const translations = {
       installCorner: 'Installer un corner',
       accessCorner: 'Acceder a mon corner',
       backToAssociation: 'Retour au site Nous Avons Des Elles',
+      welcome: 'Accueillir Les Précieuses',
+      gallery: 'Galerie',
+    },
+
+    // Bandeau galerie (diaporama defilant)
+    gallery: {
+      label: 'Galerie photo : la boutique Les Précieuses en images',
+      pause: 'Mettre en pause le défilement des photos',
+      play: 'Reprendre le défilement des photos',
+    },
+
+    // Galerie (carrousel minute)
+    gallerySection: {
+      eyebrow: 'Galerie',
+      title: 'Chaque pièce a une histoire : chez Les Précieuses, elle continue de s’écrire.',
+      label: 'Galerie photo Les Précieuses',
+      roledescription: 'carrousel',
+      prev: 'Photos précédentes',
+      next: 'Photos suivantes',
+      pause: 'Mettre en pause le défilement',
+      play: 'Reprendre le défilement',
+    },
+
+    // Split screens
+    splits: {
+      boutique: {
+        eyebrow: 'La boutique',
+        title: 'Une vraie boutique, au cœur de vos locaux',
+        p1: 'Portants soignés, accessoires choisis, mise en scène chaleureuse : chaque corner Les Précieuses est pensé comme une petite boutique où l’on prend plaisir à flâner.',
+        p2: 'Vêtements, sacs, bijoux et objets chinés sont sélectionnés un à un par nos équipes, puis renouvelés régulièrement pour que vos collaborateurs aient toujours de nouvelles pièces à découvrir.',
+        cta: 'Voir comment ça marche',
+      },
+      bijoux: {
+        eyebrow: 'Accessoires & bijoux',
+        title: 'Des pièces qui donnent le sourire',
+        p1: 'Boucles d’oreilles, broches, colliers… Au-delà des vêtements, Les Précieuses propose une sélection d’accessoires vintage qui révèlent la personnalité de chacune et de chacun.',
+        p2: 'Chaque achat est un petit plaisir qui prolonge la vie d’un objet et soutient, dans le même geste, des femmes en situation de précarité.',
+        cta: 'Découvrir notre impact',
+      },
+      espace: {
+        eyebrow: 'Quelques mètres carrés suffisent',
+        title: 'Un petit espace suffit pour accueillir Les Précieuses !',
+        p1: 'Vous disposez d’un coin disponible dans votre entreprise, commerce ou établissement ? Quelques mètres carrés suffisent pour accueillir Les Précieuses et contribuer à une belle initiative solidaire.',
+        points: [
+          'Un portant, quelques étagères : le corner s’adapte à votre espace',
+          'Installation, approvisionnement et gestion pris en charge',
+          'Un engagement solidaire concret et visible pour vos équipes et vos visiteurs',
+        ],
+        tagline: 'Un petit espace chez vous, une grande opportunité pour elles.',
+        cta: 'Accueillir Les Précieuses',
+      },
     },
 
     // Hero
@@ -25,7 +76,7 @@ export const translations = {
       titleLine1: 'La boutique du reemploi',
       titleLine2: 'eco-responsable',
       description:
-        "Integrez un corner de vetements de seconde main, en libre-service et accessible, pour encourager vos collaborateurs vers une consommation durable.",
+        "Integrez un corner de seconde main, en libre-service et accessible, pour encourager vos collaborateurs vers une consommation durable.",
       primaryCta: 'Installer un corner',
       secondaryCta: 'En savoir plus',
       scrollLabel: 'Decouvrir',

@@ -7,6 +7,10 @@ import ProcessStep from '../components/ProcessStep.astro';
 import StatCard from '../components/StatCard.astro';
 import BenefitCard from '../components/BenefitCard.astro';
 import ContactSection from '../components/ContactSection.astro';
+import ImageMarquee from '../components/ImageMarquee.astro';
+import SplitScreen from '../components/SplitScreen.astro';
+import GallerySlider from '../components/GallerySlider.astro';
+import media from '../data/media.json';
 import { getLangFromUrl, useTranslations } from '../i18n';
 
 const lang = getLangFromUrl(Astro.url);
@@ -31,16 +35,17 @@ const benefitIcons = [
 ];
 
 // Process images (WebP format)
-const processImages = [
-  `${base}/images/collecte.webp`,
-  `${base}/images/selection.webp`,
-  `${base}/images/achat.webp`,
-];
+const img = (file: string) => `${base}/images/${file}`;
+const processImages = [media.page.collecte, media.page.selection, media.page.achat];
+const concept = media.page.concept;
 ---
 
-<MainLayout title="Les Precieuses | Nous Avons Des Elles">
+<MainLayout title="Les Précieuses | Corner seconde main solidaire en entreprise">
   <!-- Hero Section -->
   <Hero lang={lang} />
+
+  <!-- Bandeau galerie defilant (visible dans la premiere vue) -->
+  <ImageMarquee lang={lang} />
 
   <!-- Presentation Section -->
   <section id="concept" class="py-20 lg:py-32 bg-white overflow-hidden">
@@ -74,10 +79,13 @@ const processImages = [
           <div class="relative isolate">
             <div class="aspect-[4/3] rounded-[20px] overflow-hidden shadow-[0_0_10px_rgba(0,0,0,0.35)]">
               <img
-                src={`${base}/images/femmes.webp`}
-                alt="Equipe Les Precieuses - Femmes engagees pour le reemploi solidaire"
-                width="800"
-                height="600"
+                src={img(concept.src)}
+                srcset={concept.srcset.map(img).join(', ')}
+                sizes="(min-width: 1280px) 592px, (min-width: 1024px) 46vw, calc(100vw - 2rem)"
+                decoding="async"
+                alt={concept.alt}
+                width={concept.width}
+                height={concept.height}
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -153,12 +161,40 @@ const processImages = [
             number={index + 1}
             title={step.title}
             description={step.description}
-            image={processImages[index]}
+            image={img(processImages[index].src)}
+            alt={processImages[index].alt}
           />
         ))}
       </div>
     </div>
   </section>
+
+  <!-- Split screen : la boutique (image a gauche) -->
+  <SplitScreen
+    id="boutique"
+    image={media.page.boutique}
+    eyebrow={t.splits.boutique.eyebrow}
+    title={t.splits.boutique.title}
+    background="gradient-bg"
+  >
+    <p>{t.splits.boutique.p1}</p>
+    <p>{t.splits.boutique.p2}</p>
+    <a slot="actions" href="#process" class="btn-secondary">{t.splits.boutique.cta}</a>
+  </SplitScreen>
+
+  <!-- Split screen : accessoires & bijoux (image a droite) -->
+  <SplitScreen
+    id="accessoires"
+    image={media.page.bijoux}
+    eyebrow={t.splits.bijoux.eyebrow}
+    title={t.splits.bijoux.title}
+    reverse
+    objectPosition="center 30%"
+  >
+    <p>{t.splits.bijoux.p1}</p>
+    <p>{t.splits.bijoux.p2}</p>
+    <a slot="actions" href="#impact" class="btn-secondary">{t.splits.bijoux.cta}</a>
+  </SplitScreen>
 
   <!-- Benefits Section -->
   <section class="py-20 lg:py-32 bg-secondary-50">
@@ -178,6 +214,35 @@ const processImages = [
       </div>
     </div>
   </section>
+
+  <!-- Split screen : "Quelques metres carres suffisent" (image a gauche) -->
+  <SplitScreen
+    id="accueillir"
+    image={media.page.espace}
+    eyebrow={t.splits.espace.eyebrow}
+    title={t.splits.espace.title}
+  >
+    <p>{t.splits.espace.p1}</p>
+    <ul class="space-y-3 !mt-6" role="list">
+      {t.splits.espace.points.map((point) => (
+        <li class="flex items-start gap-3">
+          <svg class="w-5 h-5 mt-1 flex-none text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span>{point}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="!mt-8 border-l-4 border-warm-400 pl-4 font-display italic text-[length:var(--fs-h3)] leading-snug text-warm-600">
+      {t.splits.espace.tagline}
+    </p>
+    <a slot="actions" href="#contact" class="btn-primary group">
+      {t.splits.espace.cta}
+      <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+      </svg>
+    </a>
+  </SplitScreen>
 
   <!-- Ecological Section -->
   <section class="py-20 lg:py-32 bg-primary-500 text-white overflow-hidden relative">
@@ -234,6 +299,9 @@ const processImages = [
       </div>
     </div>
   </section>
+
+  <!-- Galerie : carrousel minute des photos de la boutique -->
+  <GallerySlider lang={lang} />
 
   <!-- CTA Section -->
   <section class="py-20 lg:py-32 bg-secondary-800 overflow-hidden relative">

@@ -1,10 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://nousavonsdeselles.fr/les-precieuses/</loc>
-    <lastmod>2024-11-06</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/boutique-portant-seconde-main-1600.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/echange-boutique-solidaire-1200.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/collecte-panier-vetements-entreprise-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/selection-pieces-seconde-main-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/achat-pull-jaune-seconde-main-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/corner-boutique-seconde-main-1080.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/cliente-essai-boucles-oreilles-736.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/petit-espace-corner-precieuses-1024.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/entraide-essayage-collier-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/coffret-boucles-oreilles-vintage-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/manteau-rouge-portant-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/balade-fauteuil-boutique-itinerante-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/etagere-objets-chines-portrait-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/bracelets-bijoux-fantaisie-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/vitrine-bijoux-lumineuse-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/ceramique-rouge-chinee-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/plateau-broches-dorees-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/ceramiques-blanches-vintage-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://nousavonsdeselles.fr/les-precieuses/images/galerie/lampes-design-deco-800.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://nousavonsdeselles.fr/les-precieuses/mentions-legales</loc>

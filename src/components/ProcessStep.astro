@@ -4,9 +4,10 @@ interface Props {
   title: string;
   description: string;
   image: string;
+  alt?: string;
 }
 
-const { number, title, description, image } = Astro.props;
+const { number, title, description, image, alt } = Astro.props;
 ---
 
 <div class="relative">
@@ -20,9 +21,9 @@ const { number, title, description, image } = Astro.props;
     <div class="aspect-[4/3] overflow-hidden">
       <img
         src={image}
-        alt={`Etape ${number}: ${title} - Les Precieuses`}
-        width="400"
-        height="300"
+        alt={alt ?? `Etape ${number}: ${title} - Les Precieuses`}
+        width="800"
+        height="600"
         class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         loading="lazy"
         decoding="async"

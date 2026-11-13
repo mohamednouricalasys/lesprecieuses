@@ -1,0 +1,215 @@
+---
+/**
+ * Bandeau diaporama defilant (infinite marquee), 100 % CSS.
+ *
+ * - La piste contient deux copies de la liste : on la translate de -50 %,
+ *   la seconde copie prend exactement la place de la premiere -> boucle sans couture.
+ * - Animation sur `transform` uniquement (composited, pas de reflow).
+ * - Mise en pause automatique hors ecran (IntersectionObserver) et via un bouton
+ *   (WCAG 2.2.2 : tout contenu anime > 5 s doit pouvoir etre mis en pause).
+ * - prefers-reduced-motion : plus d'animation, la galerie devient un carrousel
+ *   a defilement manuel (scroll-snap) et la copie dupliquee est masquee.
+ * - Volontairement NON sticky : un bandeau d'images colle sous l'en-tete fixe
+ *   reduirait la zone de lecture (surtout sur mobile) et genererait du mouvement
+ *   permanent pendant la lecture. Il est donc place dans la premiere vue, juste
+ *   sous le Hero, dont la hauteur tient compte du bandeau.
+ */
+import media from '../data/media.json';
+import { useTranslations, type Language } from '../i18n';
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const img = (file: string) => `${base}/images/${file}`;
+const copies = [0, 1];
+
+// srcset en descripteurs w + sizes = largeur reellement affichee (hauteur du
+// bandeau x ratio) : un mobile 2x ne telecharge pas la version 480 px inutilement.
+// Hauteur affichee = var(--marquee-h) = clamp(8rem, 5.5rem + 7vh, 13rem) (global.css).
+const sizesFor = (item: { width: number; height: number }) =>
+  `calc((5.5rem + 7vh) * ${(item.width / item.height).toFixed(3)})`;
+---
+
+<section class="marquee" aria-label={t.gallery.label} data-marquee>
+  <div class="marquee-viewport">
+    <ul class="marquee-track" role="list">
+      {copies.map((copy) =>
+        media.marquee.map((item) => (
+          <li class="marquee-item" data-clone={copy === 1 ? '' : undefined} aria-hidden={copy === 1 ? 'true' : undefined}>
+            <img
+              src={img(item.src)}
+              srcset={`${img(item.src)} ${item.width}w, ${img(item.src2x)} ${item.width2x}w`}
+              sizes={sizesFor(item)}
+              alt={copy === 1 ? '' : item.alt}
+              width={item.width}
+              height={item.height}
+              loading="eager"
+              fetchpriority="low"
+              decoding="async"
+              draggable="false"
+            />
+          </li>
+        ))
+      )}
+    </ul>
+  </div>
+
+  <button
+    type="button"
+    class="marquee-toggle"
+    aria-pressed="false"
+    aria-label={t.gallery.pause}
+    data-label-pause={t.gallery.pause}
+    data-label-play={t.gallery.play}
+  >
+    <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg>
+    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+  </button>
+</section>
+
+<style>
+  .marquee {
+    position: relative;
+    background-color: theme('colors.cream');
+    padding-block: var(--marquee-pad);
+    /* Hauteur des vignettes : partagee avec le Hero (voir global.css) */
+    --gap: clamp(0.5rem, 0.3rem + 0.8vw, 1rem);
+    --duration: 70s;
+  }
+
+  .marquee-viewport {
+    overflow: hidden;
+    /* Fondu doux sur les bords */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: marquee-scroll var(--duration) linear infinite;
+    will-change: transform;
+  }
+
+  .marquee.is-paused .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Marge a droite (et non `gap`) : chaque copie a la meme largeur -> -50 % exact */
+  .marquee-item {
+    flex: none;
+    margin-right: var(--gap);
+  }
+
+  .marquee-item img {
+    display: block;
+    height: var(--marquee-h);
+    width: auto;
+    border-radius: 14px;
+    object-fit: cover;
+    background-color: theme('colors.secondary.100');
+    user-select: none;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+  /* Bouton pause / lecture : discret, visible au survol et au focus clavier */
+  .marquee-toggle {
+    position: absolute;
+    right: clamp(0.75rem, 2vw, 1.5rem);
+    bottom: calc(var(--marquee-pad) + 0.5rem);
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    color: theme('colors.secondary.800');
+    background: rgba(251, 244, 235, 0.9);
+    box-shadow: 0 1px 6px rgba(61, 43, 31, 0.2);
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+  }
+
+  .marquee-toggle:hover,
+  .marquee-toggle:focus-visible {
+    opacity: 1;
+  }
+
+  .marquee-toggle:focus-visible {
+    outline: 2px solid theme('colors.primary.600');
+    outline-offset: 2px;
+  }
+
+  .marquee-toggle svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .marquee-toggle .icon-play,
+  .marquee-toggle[aria-pressed='true'] .icon-pause {
+    display: none;
+  }
+
+  .marquee-toggle[aria-pressed='true'] .icon-play {
+    display: block;
+  }
+
+  /* Mouvement reduit : carrousel manuel, sans duplication ni animation */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      padding-inline: 1rem;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .marquee-track {
+      animation: none;
+      will-change: auto;
+    }
+
+    .marquee-item {
+      scroll-snap-align: start;
+    }
+
+    .marquee-item[data-clone],
+    .marquee-toggle {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((marquee) => {
+    const toggle = marquee.querySelector<HTMLButtonElement>('.marquee-toggle');
+    let userPaused = false;
+    let offscreen = false;
+
+    const sync = () => marquee.classList.toggle('is-paused', userPaused || offscreen);
+
+    toggle?.addEventListener('click', () => {
+      userPaused = !userPaused;
+      toggle.setAttribute('aria-pressed', String(userPaused));
+      toggle.setAttribute('aria-label', (userPaused ? toggle.dataset.labelPlay : toggle.dataset.labelPause) ?? '');
+      sync();
+    });
+
+    // Economise le GPU / la batterie quand le bandeau n'est pas visible
+    new IntersectionObserver(([entry]) => {
+      offscreen = !entry.isIntersecting;
+      sync();
+    }).observe(marquee);
+  });
+</script>
